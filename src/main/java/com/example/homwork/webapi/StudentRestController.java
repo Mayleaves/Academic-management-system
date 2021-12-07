@@ -93,7 +93,7 @@ public class StudentRestController {
     @PutMapping("/update")//修改时必须带上主键（id）
     public Student update(Student student){
         Student oldstudent=studentService.getById(student.getId());//读取旧的数据
-        if(org.apache.commons.lang.StringUtils.isEmpty(student.getPassword())){//为什么不能导包啊？
+        if(StringUtils.isEmpty(student.getPassword())){//为什么不能导包啊？
             student.setPassword(oldstudent.getPassword());//如果没有新密码，则保存原来的密码
         }
         student=studentService.update(student);
