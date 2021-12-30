@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>学生选课表</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        /* 去除表格内的线 */
+        .table>tbody>tr>td {
+            border: 0px;
+        }
+        /* 居中表头 */
+        .bootstrap-table .table thead>tr>th {
+            text-align: center;
+        }
+        /* 表头颜色 */
+        .table thead {
+            background: #eee;
+        }
+    </style>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/plugins/bootstraptable/bootstrap-table.min.css">
+
+</head>
+<body>
+<!-- 整个显示界面 -->
+<div class="container-fluid" style="text-align: center;">
+    <!-- 切换按钮 -->
+    <br>
+    <div style="text-align: left">
+        页面切换：
+        <button type="button" class="btn btn-primary" onclick="window.location.href = 'http://localhost:8080/login/user'">登录页面</button>
+    </div>
+    <!-- 标题 -->
+    <hr style="margin-bottom: -3px">
+    <h1 style="font-family: KaiTi">学<nobr>&nbsp&nbsp</nobr>生<nobr>&nbsp&nbsp</nobr>选<nobr>&nbsp&nbsp</nobr>课<nobr>&nbsp&nbsp</nobr>表</h1>
+    <hr style="margin-bottom: -3px">
+    <!-- 按钮 -->
+    <table style="margin: 20px auto; width: 100%">
+        <tr style="margin-bottom: 10px">
+            <td style="text-align:left;">
+                <!-- 查询按钮 -->
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="searchName"></label>
+                        <input type="text" class="form-control" id="searchName" name="searchName" placeholder="请输入课程名">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="searchCourseName();">查询</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <!-- 选课表 -->
+    <table id="scTable" class="table table-striped" style="margin: 0 auto; padding: 20px;"></table>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="/plugins/bootstraptable/bootstrap-table.min.js"></script>
+<script src="/plugins/bootstraptable/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/pagejs/sclist.js"></script>
+
+</body>
+</html>

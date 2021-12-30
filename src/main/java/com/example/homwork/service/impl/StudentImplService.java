@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentImplService implements StudentService {
@@ -21,20 +20,17 @@ public class StudentImplService implements StudentService {
     public Student getById(Long id){
         return studentRepository.findById(id).orElse(null);
     }
-    public List<Student> findAll() {return studentRepository.findAll();}
-    public Page<Student> findAll(Pageable pageable){return studentRepository.findAll(pageable);}
-    public Page<Student> findAll(Example<Student> student,Pageable pageable){return studentRepository.findAll(student,pageable);}
 
     public Student insert(Student student) {return studentRepository.save(student);}
-    public void delete(Student student){studentRepository.delete(student);}
     public void delete(Long id){
         Student student=new Student();
-        student.setId(id);
+        student.setSid(id);
         studentRepository.delete(student);
     }
     public Student update(Student student) {return studentRepository.save(student);}
-    public List<Student> findByNameLike(String name) {return studentRepository.findByNameLike(name);}
-    public List<Student> findByName(String name) {return studentRepository.findByName(name);}
 
-    public Optional<Student> find(Long id){ return studentRepository.findById(id);}
+    public Page<Student> findAll(Pageable pageable){return studentRepository.findAll(pageable);}
+    public Page<Student> findAll(Example<Student> student,Pageable pageable){return studentRepository.findAll(student,pageable);}
+    public List<Student> findBySnoAndSpassword(String sno,String spassword){return studentRepository.findBySnoAndSpassword(sno,spassword);}
+
 }

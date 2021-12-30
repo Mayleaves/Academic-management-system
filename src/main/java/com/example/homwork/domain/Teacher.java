@@ -7,16 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="student")
+@Entity(name="teacher")
 @Data
-public class Student {
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long sid;
-    private String sname;
-    private String sno;
-    private Integer ssex;
-    private Integer sage;
-    private Float sscore;
-    private String spassword;
+    private Long tid;
+    private String tname;
+    private String tno;
+    private Integer tsex;
+    private Integer tage;
+    private Integer tsalary;
+    private String tpassword;
 }

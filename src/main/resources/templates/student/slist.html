@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>学生表</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        /* 去除表格内的线 */
+        .table>tbody>tr>td {
+            border: 0px;
+        }
+        /* 居中表头 */
+        .bootstrap-table .table thead>tr>th {
+            text-align: center;
+        }
+        /* 表头颜色 */
+        .table thead {
+            background: #eee;
+        }
+    </style>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/plugins/bootstraptable/bootstrap-table.min.css">
+
+</head>
+<body>
+<!-- 整个显示界面 -->
+<div class="container-fluid" style="text-align: center;">
+    <!-- 切换按钮 -->
+    <br>
+    <div style="text-align: left">
+        页面切换：
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '/teacher/tlist'">教师表</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '/course/clist'">课程表</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = 'http://localhost:8080/login/user'">登录页面</button>
+    </div>
+    <!-- 标题 -->
+    <hr style="margin-bottom: -3px">
+    <h1 style="font-family: KaiTi">学<nobr>&nbsp&nbsp</nobr>生<nobr>&nbsp&nbsp</nobr>表</h1>
+    <hr style="margin-bottom: -3px">
+    <!-- 按钮 -->
+    <table style="margin: 20px auto; width: 100%">
+        <tr style="margin-bottom: 10px">
+            <td width="90px">
+                <!-- 查询选项 -->
+                <select class="form-control" id="option" name="option">
+                    <option value="sname">姓名</option>
+                    <option value="sno">学号</option>
+                </select>
+            </td>
+            <td style="text-align:left;">
+                <!-- 查询按钮 -->
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="searchName"></label>
+                        <input type="text" class="form-control" id="searchName" name="searchName" placeholder="请输入查询内容">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="searchStudentName();">查询</button>
+                </form>
+            </td>
+            <td style="text-align:right;">
+                <!-- 新增按钮 -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="preAdd();">新增学生</button>
+            </td>
+        </tr>
+    </table>
+    <!-- 学生表 -->
+    <table id="stuTable" class="table table-striped" style="margin: 0 auto; padding: 20px;"></table>
+</div>
+<!-- 弹窗 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formStudent">
+
+                    <input hidden="hidden" id="sid" name="sid"/><!-- sid要和domain内的一样，否则读不到信息 -->
+                    <div class="form-group">
+                        <label for="sname">姓名</label>
+                        <input type="text" class="form-control" id="sname" name="sname" placeholder="姓名"><!-- 必须有sname，不然获取不到信息 -->
+                    </div>
+                    <div class="form-group">
+                        <label for="sno">学号</label>
+                        <input type="text" class="form-control" id="sno" name="sno" placeholder="学号">
+                    </div>
+                    <div class="form-group">
+                        <label for="ssex">性别</label>
+                        <select class="form-control" id="ssex" name="ssex">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sage">年龄</label>
+                        <input type="text" class="form-control" id="sage" name="sage" placeholder="年龄">
+                    </div>
+                    <div class="form-group">
+                        <label for="sscore">成绩</label>
+                        <input type="text" class="form-control" id="sscore" name="sscore" placeholder="成绩">
+                    </div>
+                    <div class="form-group">
+                        <label for="spassword">密码</label>
+                        <input type="password" class="form-control" id="spassword" name="spassword" placeholder="密码">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveStudent();">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="/plugins/bootstraptable/bootstrap-table.min.js"></script>
+<script src="/plugins/bootstraptable/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/pagejs/studentlist.js"></script>
+
+</body>
+</html>
